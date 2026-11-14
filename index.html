@@ -81,7 +81,6 @@ function renderHeader(){
     var w=COL_WIDTHS[i]||100;
     html+='<th style="width:'+w+'px">'+hh+'<div class="resizer" data-col="'+i+'"></div></th>';
   });
-  html+='<th style="width:70px">播报</th>';
   html+='</tr>';
   h.innerHTML=html;
   initResizers();
@@ -143,7 +142,7 @@ function formatNewDrama(val){
 function renderTable(rows){
   var tb=document.getElementById('tableBody');
   if(!rows.length){
-    tb.innerHTML='<tr><td colspan="'+(DATA.headers.length+3)+'" class="empty">暂无数据</td></tr>';
+    tb.innerHTML='<tr><td colspan="'+(DATA.headers.length+2)+'" class="empty">暂无数据</td></tr>';
     updateStats([]);
     return;
   }
@@ -156,9 +155,6 @@ function renderTable(rows){
       var display=(DATA.headers[i]==='是否新剧')?formatNewDrama(c):c;
       html+='<td'+(cls?' class="'+cls+'"':'')+' title="'+c+'">'+display+'</td>';
     });
-    // 播报状态列
-    var broadcastTag = r.broadcast ? '<span class="tag-broadcast tag-broadcast-yes">成功</span>' : '<span class="tag-broadcast tag-broadcast-no">--</span>';
-    html+='<td>'+broadcastTag+'</td>';
     html+='</tr>';
   });
   tb.innerHTML=html;
