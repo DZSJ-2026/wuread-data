@@ -79,6 +79,9 @@ th{position:relative}
   <label>是否新剧: <select id="newDramaFilter" onchange="applyFilter()">
     <option value="all">全部</option><option value="是">新剧=是</option><option value="否">新剧=否</option>
   </select></label>
+  <label>政策: <select id="policyFilter" onchange="applyFilter()">
+    <option value="all">全部</option><option value="0.5">0.5</option><option value="0.85">0.85</option><option value="1">1</option>
+  </select></label>
   <label>更新时间: <select id="timeFilter" onchange="applyFilter()">
     <option value="all">全部时间</option>
   </select></label>
@@ -242,6 +245,11 @@ function applyFilter(){
   if(nf!=='all'){
     var newIdx=COL_IDX['是否新剧'];
     rows=rows.filter(function(r){return r.cells[newIdx]===nf});
+  }
+  var pf=document.getElementById('policyFilter').value;
+  if(pf!=='all'){
+    var pIdx=COL_IDX['官小政策系数'];
+    rows=rows.filter(function(r){return r.cells[pIdx]===pf});
   }
   filteredCache=rows;
   currentPage=1;
